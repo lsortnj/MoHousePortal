@@ -1,0 +1,49 @@
+<%if @houses%>
+<br><br>
+<section class="col-md-offset-1 col-md-10">
+  <!-- <div class="col-md-offset-2 col-md-4">
+    <select name="city" class="form-control">
+      <%#TwCountyInfo::INFO_HASH.each do |city|%>
+        <option value="<%#=city[:code]%>"><%#=city[:name]%></option>
+      <%#end%>
+    </select>
+  </div>  
+
+  <div class="col-md-4">
+    <select name="district" class="form-control">
+      <%#TwCountyInfo::INFO_HASH.each do |city|%>
+        <%#city[:districts].each do |dist|%>
+          <option data-city="<%#=city[:code]%>" value="<%#=dist[:code]%>"><%#=dist[:name]%></option>
+        <%#end%>
+      <%#end%>
+    </select>
+  </div> -->
+
+  <table class="table table-hover table-bordered">
+    <%@houses.each do |h|%>
+      <tr>
+        <td><%=image_tag(h.cover,{:width=>200})%></td>
+        <td><h4 class="text-danger"><%=h.price%>萬</h4></td>
+        <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
+        <td><%=link_to(h.name, h.link, {:target=>"_blank"})%></td>
+        <td><%=h.rooms_info%></td>
+        <td><%=h.park_info%></td>
+        <td><%=h.source%></td>
+      </tr>
+    <%end%>
+  </table>
+</section>
+
+<script>
+  $(document).ready(function(){
+    $("select[name='city']").change(function(){
+      $("select[name='district'] option").attr("disabled",true);
+      $("option[data-city='"+$(this).val()+"']").attr("disabled",false);
+    });
+    $("select[name='city']").trigger('change');
+  });
+</script>
+
+<%else%>
+
+<%end%>

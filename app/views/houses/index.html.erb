@@ -1,49 +1,75 @@
-<%if @houses%>
 <br><br>
-<section class="col-md-offset-1 col-md-10">
-  <!-- <div class="col-md-offset-2 col-md-4">
+
+<section class="filter row">
+  <div class="col-md-2">
     <select name="city" class="form-control">
-      <%#TwCountyInfo::INFO_HASH.each do |city|%>
-        <option value="<%#=city[:code]%>"><%#=city[:name]%></option>
-      <%#end%>
+      <%TwCountyInfo::INFO_HASH.each do |city|%>
+        <option value="<%=city[:code]%>"><%=city[:name]%></option>
+      <%end%>
     </select>
   </div>  
 
-  <div class="col-md-4">
+  <div class="col-md-2">
     <select name="district" class="form-control">
-      <%#TwCountyInfo::INFO_HASH.each do |city|%>
-        <%#city[:districts].each do |dist|%>
-          <option data-city="<%#=city[:code]%>" value="<%#=dist[:code]%>"><%#=dist[:name]%></option>
-        <%#end%>
-      <%#end%>
+      <%TwCountyInfo::INFO_HASH.each do |city|%>
+        <%city[:districts].each do |dist|%>
+          <option data-city="<%=city[:code]%>" value="<%=dist[:code]%>"><%=dist[:name]%></option>
+        <%end%>
+      <%end%>
     </select>
-  </div> -->
+  </div>
 
-  <table class="table table-hover table-bordered">
+  <div class="col-md-4">
+    <form class="form-inline">
+      <div class="form-group">
+        <label>$</label>
+        <select name="price_from" class="form-control">
+          <%for x in (100..2000).step(50)%>
+            <option value="<%=x%>"><%=x%></option>
+          <%end%>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>~</label>
+        <select name="price_to" class="form-control">
+          <%for x in (150..2000).step(50)%>
+            <option value="<%=x%>"><%=x%></option>
+          <%end%>
+        </select>
+        <label>萬</label>
+      </div>
+    </form>
+  </div>  
+
+  <button id="btnSearch" class="btn btn-success col-md-2">Search</button>
+</section>
+
+<%if @houses and @houses.size > 0%>
+  <table class="table table-hover table-bordered table-house-list">
     <%@houses.each do |h|%>
       <tr>
-        <td><%=image_tag(h.cover,{:width=>200})%></td>
+        <td><a href="h.link" target="_blank"><%=image_tag(h.cover,{:width=>200})%></a></td>
         <td><h4 class="text-danger"><%=h.price%>萬</h4></td>
-        <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
+        <td><h4 class="text-success"><%=h.range_area%></h4></td>
         <td><%=link_to(h.name, h.link, {:target=>"_blank"})%></td>
         <td><%=h.rooms_info%></td>
         <td><%=h.park_info%></td>
-        <td><%=h.source%></td>
+        <!-- <td><%#=h.source%></td> -->
       </tr>
     <%end%>
   </table>
-</section>
+<%else%>
+  <br><br><h3 class="text-center text-success">沒有符合的物件</h3>
+<%end%>
+
 
 <script>
   $(document).ready(function(){
-    $("select[name='city']").change(function(){
-      $("select[name='district'] option").attr("disabled",true);
-      $("option[data-city='"+$(this).val()+"']").attr("disabled",false);
-    });
-    $("select[name='city']").trigger('change');
+    SearchFilter.init(
+      "<%=params[:city].to_s%>",
+      "<%=params[:district].to_s%>",
+      "<%=params[:price_from].to_s%>",
+      "<%=params[:price_to].to_s%>"
+    );
   });
 </script>
-
-<%else%>
-
-<%end%>

@@ -27,4 +27,12 @@ class HouseInfo
   add_accessor :info        , :default=>""
   add_accessor :link        , :default=>""
   add_accessor :cover       , :default=>""
+
+  def self.sort_by_price(house_infos)
+    return house_infos if !house_infos.is_a? Array
+    return house_infos.sort do |x, y|
+            Monetize.parse(x.price).amount.to_i <=>
+            Monetize.parse(y.price).amount.to_i
+          end
+  end
 end

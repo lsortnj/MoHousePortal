@@ -16,13 +16,13 @@ class Housefun < ActiveRecord::Base
       :"TGsn03"         => ""         ,:"TGType01"       => "",
       :"TGType02"       => ""         ,:"TGType03"       => "",
       :"BuildingID"     => ""         ,:"BuildingName"   => "",
-      :"Purpose"        => "K"        ,:"PriceID"        => "",
-      :"Price"          => ""         ,:"Keyword"        => "",
+      :"Purpose"        => "K"        ,:"PriceID"        => "6",
+      :"Price"          => "100-1000" ,:"Keyword"        => "",
       :"TGTypeList"     => ""         ,:"Tag"            => "",
       :"RoomID"         => ""         ,:"Room"           => "",
       :"RegAreaID"      => ""         ,:"RegArea"        => "",
       :"CaseType"       => "L", # L:電梯大樓, K:無電梯公寓, N:別墅, M:透天厝, S:套房
-      :"UnitPriceID"    => "3"        ,:"UnitPrice"      => "-30",
+      :"UnitPriceID"    => ""         ,:"UnitPrice"      => "",
       :"BuildAgeID"     => "6"        ,:"BuildAge"       => "5-15",
       :"ParkingType"    => "Y"        ,:"CaseFloor"      => "",
       :"Brand"          => ""         ,:"SID"            => "",
@@ -30,9 +30,9 @@ class Housefun < ActiveRecord::Base
       :"WebAgentID"     => ""     #104161990
   }
 
-  def self.get_housefun_data(city, district)
+  def self.get_housefun_data(city, district, price_from=100, price_to=1000)
     uri           = URI.parse(Housefun::API_HOST)
-    uri.query     = URI.encode_www_form(gen_params(city, district))
+    uri.query     = URI.encode_www_form(gen_params(city, district, price_from, price_to))
     http          = Net::HTTP.new(uri.host, uri.port);
     request       = Net::HTTP::Get.new(uri.request_uri)
     raw_response  = http.request(request).body
@@ -48,7 +48,7 @@ class Housefun < ActiveRecord::Base
       info.source     = "好房網"
       info.name       = h["CaseName"]
       info.price      = h["Price"]
-      info.range_area = h["RegArea"]
+      info.range_area = h["RegArea"]+"坪"
       info.rooms_info = h["Patterns"]
       info.park_info  = "車位:"+h["ParkingType"]
       info.info       = ""
@@ -60,10 +60,11 @@ class Housefun < ActiveRecord::Base
   end
 
 private
-  def self.gen_params(city, district)
+  def self.gen_params(city, district, price_from=100, price_to=1000)
     filtes_data = Housefun::PARAMS_FILTER_DATA
     filtes_data[:"County01"]   = city
     filtes_data[:"District01"] = district
+    filtes_data[:"Price"]      = "#{price_from}-#{price_to}"
     params = {
       :"callback"=>"angular.callbacks._6",
       :"RequestPackage"=>{

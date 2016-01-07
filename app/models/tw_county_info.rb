@@ -413,4 +413,12 @@ class TwCountyInfo
         {cityCode: "0003", name: "東引鄉", code: "52"}
       ]}
     ]
+
+  def self.get_city_name_by_code(code)
+    return TwCountyInfo::INFO_HASH.find{|city| city[:code] == code}[:name] rescue ""
+  end
+
+  def self.get_district_name_by_code(code)
+    return TwCountyInfo::INFO_HASH.each{|city| city[:districts].each{|d| return d[:name] if d[:code]== code}} rescue ""
+  end
 end

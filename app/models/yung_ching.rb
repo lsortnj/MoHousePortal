@@ -28,10 +28,11 @@ class YungChing
         cover = case_name_a.css('img')[0]['src']
         case_info_ul = li.css('ul').find{|ul| ul['class']=='item-info-detail'} rescue nil
         next if case_info_ul.nil?
-        case_info = "";  range_area = "";  rooms_info = "";  park_info  = ""
+        case_info = ""; range_area = ""; rooms_info= ""; park_info= ""; floor=""
         #坪數，房數，車位
         case_info_ul.css('li').each_with_index do |info, idx|
          case_info+=info.text+","
+         floor      = info.text if idx == 2
          range_area = info.text if idx == 5
          rooms_info = info.text if idx == 6
          park_info  = info.text if idx == 8
@@ -40,16 +41,16 @@ class YungChing
         price = li.css('span').find{|s| s['class']=='price-num'}.text rescue nil
         next if price.nil?
 
-        info = HouseInfo.new
-        info.source     = "永慶"
-        info.name       = case_name
-        info.price      = price
-        info.range_area = range_area.gsub!("建物 ","")
-        info.rooms_info = rooms_info
-        info.park_info  = park_info
-        info.info       = case_info
-        info.link       = HOST+case_link
-        info.cover      = cover
+        info = HouseInfo.new("永慶", case_name, Monetize.parse(price).amount.to_i, cover)
+        info.range_area   = (range_area.gsub!("建物 ","").gsub!("坪","")).to_f
+        info.rooms_count  = rooms_info.gsub(/\s+/, "")[0,1]
+        info.space_count  = rooms_info.gsub(/\s+/, "")[5,1]
+        info.toilet_count = rooms_info.gsub(/\s+/, "")[7,1]
+        info.rooms_info   = rooms_info
+        info.park_info    = park_info
+        info.info         = case_info
+        info.floor        = floor
+        info.link         = HOST+case_link
       
         data.push(info)
       end

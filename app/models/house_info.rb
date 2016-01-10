@@ -1,7 +1,12 @@
 class HouseInfo
 
-  def initialize
+  def initialize(source, name, price, cover, info="")
     @info_attr = {}
+    self.source = source
+    self.name   = name
+    self.price  = price
+    self.info   = info
+    self.cover  = cover
   end
 
   def self.add_accessor(key, attr={})
@@ -20,19 +25,20 @@ class HouseInfo
 
   add_accessor :source      , :default=>""
   add_accessor :name        , :default=>""
-  add_accessor :price       , :default=>""
-  add_accessor :range_area  , :default=>""
+  add_accessor :price       , :default=>0
+  add_accessor :range_area  , :default=>0
+  add_accessor :rooms_count , :default=>0
+  add_accessor :space_count , :default=>0
+  add_accessor :toilet_count, :default=>0
   add_accessor :rooms_info  , :default=>""
   add_accessor :park_info   , :default=>""
   add_accessor :info        , :default=>""
   add_accessor :link        , :default=>""
   add_accessor :cover       , :default=>""
+  add_accessor :floor       , :default=>""
 
   def self.sort_by_price(house_infos)
     return house_infos if !house_infos.is_a? Array
-    return house_infos.sort do |x, y|
-            Monetize.parse(x.price).amount.to_i <=>
-            Monetize.parse(y.price).amount.to_i
-          end
+    return house_infos.sort{|x, y| x.price <=> y.price}
   end
 end

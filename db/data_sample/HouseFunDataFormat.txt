@@ -1,0 +1,122 @@
+http://buy.housefun.com.tw/買屋/新北市_林口區?
+hd_CityID=0001&
+hd_AreaID=35&
+hd_Purpose=K&
+hd_CaseType=L&
+hd_UnitPriceID=3&
+hd_UnitPrice=-30&
+hd_BuildAgeID=6&
+hd_BuildAge=5-15&
+hd_ParkingType=Y&
+hd_Sequence=SEQUP&
+hd_SearchGroup=Group01&
+hd_PM=3&
+hd_Tab=1&
+hd_SID=104161990
+
+
+
+RequestPackage  {
+  "Method":"INQUIRE",
+  "Data":{"Limit":"10",
+    "page":"3","Sequence":"SEQUP","SearchMode":"1",
+    "County01":"新北市","District01":"林口區",
+    "County02":"","District02":"",
+    "County03":"","District03":"",
+    "MRTLineID01":"","MRTStationID01":"",
+    "MRTLineID02":"","MRTStationID02":"",
+    "MRTLineID03":"","MRTStationID03":"",
+    "TGsn01":"","TGsn02":"",
+    "TGsn03":"","TGType01":"",
+    "TGType02":"","TGType03":"",
+    "BuildingID":"","BuildingName":"","Purpose":"K",
+    "PriceID":"","Price":"",
+    "Keyword":"","TGTypeList":"","Tag":"",
+    "CaseType":"L","UnitPriceID":"3",
+    "UnitPrice":"-30","RoomID":"","Room":"",
+    "RegAreaID":"","RegArea":"",
+    "BuildAgeID":"6","BuildAge":"5-15","ParkingType":"Y",
+    "CaseFloor":"","Brand":"",
+    "SID":"104161990","ObjectID":"","ObjectKind":"","WebAgentID":""
+  }
+}
+
+http://buy.housefun.com.tw/ashx/buy/new/GetBuyList.ashx?
+callback=angular.callbacks._6&
+RequestPackage=%7B"Method":"INQUIRE",
+"Data":%7B"
+Limit":"10",
+"page":"3",
+"Sequence":"SEQUP",
+"SearchMode":"1",
+"County01":"新北市",
+"District01":"林口區",
+"County02":"",
+"District02":"",
+"County03":"",
+"District03":"",
+"MRTLineID01":"",
+"MRTStationID01":"",
+"MRTLineID02":"",
+"MRTStationID02":"",
+"MRTLineID03":"",
+"MRTStationID03":"",
+"TGsn01":"",
+"TGsn02":"",
+"TGsn03":"",
+"TGType01":"",
+"TGType02":"",
+"TGType03":""
+,"BuildingID":"",
+"BuildingName":"",
+"Purpose":"K",
+"PriceID":"",
+"Price":"",
+"Keyword":"",
+"TGTypeList":"",
+"Tag":"",
+"CaseType":"L",
+"UnitPriceID":"3",
+"UnitPrice":"-30",
+"RoomID":"",
+"Room":"",
+"RegAreaID":"",
+"RegArea":"",
+"BuildAgeID":"6",
+"BuildAge":"5-15",
+"ParkingType":"Y",
+"CaseFloor":"",
+"Brand":"",
+"SID":"104161990",
+"ObjectID":"",
+"ObjectKind":"",
+"WebAgentID":""%7D%7D
+
+
+
+
+/ashx/buy/new/GetBuyList.ashx?callback=angular.callbacks._6&RequestPackage=%7B%22Method%22:%22INQUIRE%22,%22Data%22:%7B%22Limit%22:%221000%22,%22page%22:%221%22,%22Sequence%22:%22SEQUP%22,%22SearchMode%22:%221%22,%22County01%22:%22新北市%22,%22District01%22:%22林口區%22,%22County02%22:%22%22,%22District02%22:%22%22,%22County03%22:%22%22,%22District03%22:%22%22,%22MRTLineID01%22:%22%22,%22MRTStationID01%22:%22%22,%22MRTLineID02%22:%22%22,%22MRTStationID02%22:%22%22,%22MRTLineID03%22:%22%22,%22MRTStationID03%22:%22%22,%22TGsn01%22:%22%22,%22TGsn02%22:%22%22,%22TGsn03%22:%22%22,%22TGType01%22:%22%22,%22TGType02%22:%22%22,%22TGType03%22:%22%22,%22BuildingID%22:%22%22,%22BuildingName%22:%22%22,%22Purpose%22:%22K%22,%22PriceID%22:%22%22,%22Price%22:%22%22,%22Keyword%22:%22%22,%22TGTypeList%22:%22%22,%22Tag%22:%22%22,%22CaseType%22:%22L%22,%22UnitPriceID%22:%223%22,%22UnitPrice%22:%22-30%22,%22RoomID%22:%22%22,%22Room%22:%22%22,%22RegAreaID%22:%22%22,%22RegArea%22:%22%22,%22BuildAgeID%22:%226%22,%22BuildAge%22:%225-15%22,%22ParkingType%22:%22Y%22,%22CaseFloor%22:%22%22,%22Brand%22:%22%22,%22SID%22:%22104161990%22,%22ObjectID%22:%22%22,%22ObjectKind%22:%22%22,%22WebAgentID%22:%22%22%7D%7D
+
+
+
+                  "HFID" => "1904659",
+                 "Price" => "1,920",
+             "LastPrice" => "",
+              "CoverPic" => "http://pic.hfcdn.com/res/DrawImage/ShowPic/272/0/hfbuy03/z001/z000ag00011328/1904659/z001z000ag000113281904659a0.jpg?t=15112913552",
+              "CaseName" => "民視施華洛奇優質社區3+1房-嘉誠地產",
+               "Address" => "新北市林口區",
+              "FlagName" => "",
+               "RegArea" => "71",
+               "LandPin" => "12",
+              "BuildAge" => "7",
+                "IsLand" => "N",
+              "Patterns" => "4房(室)2廳2衛",
+             "UnitPrice" => "27.04萬/坪，比實價便宜2.1萬/坪！",
+        "UnitPriceColor" => 2,
+                 "Floor" => "8-8/14",
+           "ParkingType" => "Y",
+            "UpdateTime" => "2小時前刷新",
+         "WebAgentTitle" => "經紀人",
+          "WebAgentName" => "嘉誠地產",
+           "IsCertified" => "N",
+          "CaseTypeName" => "大樓"

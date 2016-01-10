@@ -44,16 +44,16 @@ class Housefun < ActiveRecord::Base
 
     house_data = []
     json_arr.each do |h|
-      info = HouseInfo.new
-      info.source     = "好房網"
-      info.name       = h["CaseName"]
-      info.price      = h["Price"]
-      info.range_area = h["RegArea"]+"坪"
-      info.rooms_info = h["Patterns"]
-      info.park_info  = "車位:"+h["ParkingType"]
-      info.info       = ""
-      info.link       = "http://buy.housefun.com.tw/buy/house/"+h["HFID"]
-      info.cover      = h["CoverPic"]
+      info = HouseInfo.new("好房網", h["CaseName"], Monetize.parse(h["Price"]).amount.to_i, h["CoverPic"])
+      info.range_area   = h["RegArea"].to_f
+      info.rooms_count  = h["Patterns"].gsub(/\s+/, "")[0,1]
+      info.space_count  = h["Patterns"].gsub(/\s+/, "")[5,1]
+      info.toilet_count = h["Patterns"].gsub(/\s+/, "")[7,1]
+      info.rooms_info   = h["Patterns"]
+      info.floor        = h["Floor"]
+      info.park_info    = h["ParkingType"]
+      info.info         = ""
+      info.link         = "http://buy.housefun.com.tw/buy/house/"+h["HFID"]
       house_data.push(info)
     end
     return house_data

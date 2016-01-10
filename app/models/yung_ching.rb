@@ -3,12 +3,12 @@ class YungChing
 
   HOST = "http://buy.yungching.com.tw"
 
-  def self.get_yung_ching_data(city, district, price_from=100, price_to=1000)
+  def self.get_house_data(filter_buy)
     data        = []
-    request_url = get_request_url(city, district, price_from, price_to)
+    request_url = get_request_url(filter_buy)
     page_count  = get_page_count(request_url)
     page_count.times do |order|
-      request_url   = get_request_url(city, district)
+      request_url   = get_request_url(filter_buy)
       request_url   += "?pg=#{order}" if order >= 2
       uri           = URI.parse(URI.escape(request_url))
       http          = Net::HTTP.new(uri.host, uri.port);
@@ -28,14 +28,15 @@ class YungChing
         cover = case_name_a.css('img')[0]['src']
         case_info_ul = li.css('ul').find{|ul| ul['class']=='item-info-detail'} rescue nil
         next if case_info_ul.nil?
-        case_info = ""; range_area = ""; rooms_info= ""; park_info= ""; floor=""
+        case_info = ""; range_area = ""; rooms_info= ""; park_info= ""; floor=""; building_age=0
         #坪數，房數，車位
         case_info_ul.css('li').each_with_index do |info, idx|
          case_info+=info.text+","
-         floor      = info.text if idx == 2
-         range_area = info.text if idx == 5
-         rooms_info = info.text if idx == 6
-         park_info  = info.text if idx == 8
+         building_age = info.text if idx == 1
+         floor        = info.text if idx == 2
+         range_area   = info.text if idx == 5
+         rooms_info   = info.text if idx == 6
+         park_info    = info.text if idx == 8
         end
         case_info = case_info.gsub!("\n","")
         price = li.css('span').find{|s| s['class']=='price-num'}.text rescue nil
@@ -50,6 +51,7 @@ class YungChing
         info.park_info    = park_info
         info.info         = case_info
         info.floor        = floor
+        info.building_age = building_age.to_f
         info.link         = HOST+case_link
       
         data.push(info)
@@ -83,10 +85,13 @@ class YungChing
       return 0
     end
 
-    def self.get_request_url(city, district, price_from=0, price_to=1200)
-      url = HOST+"/region/住宅_p/#{city}-#{district}_c/#{price_from}-#{price_to}_price/5-10_age/電梯大廈_type/y_park/"
+    def self.get_request_url(filter_buy)
+      buiding_age = filter_buy.age_from==0 ? "-#{filter_buy.age_to}_age" : "#{filter_buy.age_from}-#{filter_buy.age_to}_age"
+      #有車位加上 y_park
+      url = HOST+"/region/住宅_p/#{filter_buy.city}-#{filter_buy.district}_c/"+
+                 "#{filter_buy.price_from}-#{filter_buy.price_to}_price/"+
+                 "#{buiding_age}/電梯大廈_type/"
       return url
-
     end
 
 end

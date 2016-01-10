@@ -36,6 +36,7 @@ class HouseInfo
   add_accessor :link        , :default=>""
   add_accessor :cover       , :default=>""
   add_accessor :floor       , :default=>""
+  add_accessor :building_age, :default=>0
 
   def self.sort_by_price(house_infos)
     return house_infos if !house_infos.is_a? Array

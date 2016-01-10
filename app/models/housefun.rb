@@ -24,15 +24,15 @@ class Housefun < ActiveRecord::Base
       :"CaseType"       => "L", # L:電梯大樓, K:無電梯公寓, N:別墅, M:透天厝, S:套房
       :"UnitPriceID"    => ""         ,:"UnitPrice"      => "",
       :"BuildAgeID"     => "6"        ,:"BuildAge"       => "5-15",
-      :"ParkingType"    => "Y"        ,:"CaseFloor"      => "",
+      :"ParkingType"    => ""         ,:"CaseFloor"      => "",
       :"Brand"          => ""         ,:"SID"            => "",
       :"ObjectID"       => ""         ,:"ObjectKind"     => "",
       :"WebAgentID"     => ""     #104161990
   }
 
-  def self.get_housefun_data(city, district, price_from=100, price_to=1000)
+  def self.get_house_data(filter_buy)
     uri           = URI.parse(Housefun::API_HOST)
-    uri.query     = URI.encode_www_form(gen_params(city, district, price_from, price_to))
+    uri.query     = URI.encode_www_form(gen_params(filter_buy))
     http          = Net::HTTP.new(uri.host, uri.port);
     request       = Net::HTTP::Get.new(uri.request_uri)
     raw_response  = http.request(request).body
@@ -53,6 +53,7 @@ class Housefun < ActiveRecord::Base
       info.floor        = h["Floor"]
       info.park_info    = h["ParkingType"]
       info.info         = ""
+      info.building_age = h["BuildAge"].to_f
       info.link         = "http://buy.housefun.com.tw/buy/house/"+h["HFID"]
       house_data.push(info)
     end
@@ -60,11 +61,12 @@ class Housefun < ActiveRecord::Base
   end
 
 private
-  def self.gen_params(city, district, price_from=100, price_to=1000)
+  def self.gen_params(filter_buy)
     filtes_data = Housefun::PARAMS_FILTER_DATA
-    filtes_data[:"County01"]   = city
-    filtes_data[:"District01"] = district
-    filtes_data[:"Price"]      = "#{price_from}-#{price_to}"
+    filtes_data[:"County01"]   = filter_buy.city
+    filtes_data[:"District01"] = filter_buy.district
+    filtes_data[:"Price"]      = "#{filter_buy.price_from}-#{filter_buy.price_to}"
+    filtes_data[:"BuildAge"]   = filter_buy.age_from==0 ? "-#{filter_buy.age_to}" : "#{filter_buy.age_from}-#{filter_buy.age_to}"
     params = {
       :"callback"=>"angular.callbacks._6",
       :"RequestPackage"=>{

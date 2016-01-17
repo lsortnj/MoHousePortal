@@ -1,4 +1,5 @@
 #encoding: utf-8
+#永慶房屋
 class YungChing
 
   HOST = "http://buy.yungching.com.tw"

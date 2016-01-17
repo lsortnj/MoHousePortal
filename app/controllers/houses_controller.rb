@@ -6,8 +6,8 @@ class HousesController < ApplicationController
 
     @city     = params[:city]     ||= "新北市"
     @district = params[:district] ||= "林口區"
-    @city     = TwCountyInfo.get_city_name_by_code(params[:city]) if params[:city][0,1] == "0"
-    @district = TwCountyInfo.get_district_name_by_code(params[:district]) if params[:district].to_i > 0
+    @city     = TwCountyInfo.get_city_name_by_code(@city)         if @city[0,1] == "0"
+    @district = TwCountyInfo.get_district_name_by_code(@district) if @district.to_i > 0
     
     @price_from = params[:price_from]  ||= 100
     @price_to   = params[:price_to]    ||= 1000
@@ -22,7 +22,8 @@ class HousesController < ApplicationController
     @houses = (
       Housefun.get_house_data(filter_buy)  + 
       YungChing.get_house_data(filter_buy) +
-      SinYi.get_house_data(filter_buy) 
+      SinYi.get_house_data(filter_buy)     +
+      DrewSun.get_house_data(filter_buy)
     ).flatten
 
     #Sort By price

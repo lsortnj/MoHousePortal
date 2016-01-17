@@ -72,18 +72,18 @@
   <table class="table table-hover table-bordered table-house-list">
     <thead>
       <th class="td-cover">圖片</th><th class="td-price">總價</th><th class="td-range">坪數</th>
-      <th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th><th class="td-floor hidden-xs">樓層</th>
-      <th class="td-age">屋齡</th><th class="td-park">車位</th>
+      <th class="td-age">屋齡</th><th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th>
+      <th class="td-floor hidden-xs">樓層</th><th class="td-park">車位</th>
     </thead>
     <%@houses.each do |h|%>
       <tr>
         <td><a href="h.link" target="_blank"><%=image_tag(h.cover,{:width=>150})%></a></td>
         <td><h4 class="text-danger"><%=h.price%>萬</h4></td>
         <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
+        <td class="hidden-xs"><%=h.building_age%></td>
         <td class="td-name"><%=link_to(h.name, h.link, {:target=>"_blank"})%></td>
         <td class="hidden-xs"><%=h.rooms_count%>房(室)<%=h.space_count%>廳<%=h.toilet_count%>衛</td>
         <td class="hidden-xs"><%=h.floor%></td>
-        <td class="hidden-xs"><%=h.building_age%></td>
         <td><%=h.park_info%></td>
         <!-- <td><%#=h.source%></td> -->
       </tr>

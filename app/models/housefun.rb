@@ -1,4 +1,5 @@
 #encoding: utf-8
+#好房網
 class Housefun < ActiveRecord::Base
 
   API_HOST = "http://buy.housefun.com.tw/ashx/buy/new/GetBuyList.ashx"

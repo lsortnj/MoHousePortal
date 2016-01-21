@@ -19,12 +19,7 @@ class HousesController < ApplicationController
 
     filter_buy = FilterBuy.new(@city, @district, @price_from, @price_to, @age_from, @age_to)
 
-    @houses = (
-      Housefun.get_house_data(filter_buy)  + 
-      YungChing.get_house_data(filter_buy) +
-      SinYi.get_house_data(filter_buy)     +
-      DrewSun.get_house_data(filter_buy)
-    ).flatten
+    @houses = HouseInfo.get_from_all_source(filter_buy)
 
     #Sort By price
     @houses = HouseInfo.sort_by_price(@houses)

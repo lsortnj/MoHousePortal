@@ -54,7 +54,7 @@ class DrewSun
         # info.info         = case_info
         info.floor        = tag_house_info.css("li")[6].text.gsub("樓層:","")
         info.building_age = -999
-        info.link         = BASE_HOST+link
+        info.link         = link
 
         data.push(info)
       end

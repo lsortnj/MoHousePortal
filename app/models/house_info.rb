@@ -1,5 +1,7 @@
 class HouseInfo
 
+  DROP_REPEAT = true
+
   def initialize(source, name, price, cover, info="")
     @info_attr = {}
     self.source = source
@@ -41,5 +43,16 @@ class HouseInfo
   def self.sort_by_price(house_infos)
     return house_infos if !house_infos.is_a? Array
     return house_infos.sort{|x, y| x.price <=> y.price}
+  end
+
+  def self.get_from_all_source(filter_buy)
+    all = (
+      Housefun.get_house_data(filter_buy)  + 
+      YungChing.get_house_data(filter_buy) +
+      SinYi.get_house_data(filter_buy)     +
+      DrewSun.get_house_data(filter_buy)
+    ).flatten
+
+    return all
   end
 end

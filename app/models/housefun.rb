@@ -2,7 +2,7 @@
 #好房網
 class Housefun < ActiveRecord::Base
 
-  API_HOST = "http://buy.housefun.com.tw/ashx/buy/new/GetBuyList.ashx"
+  API_HOST = "https://buy.housefun.com.tw/ashx/buy/new/GetBuyList.ashx"
 
   PARAMS_FILTER_DATA = {
       :"Limit"          => "1000"     ,:"page"           => "1",
@@ -34,12 +34,13 @@ class Housefun < ActiveRecord::Base
   def self.get_house_data(filter_buy)
     uri           = URI.parse(Housefun::API_HOST)
     uri.query     = URI.encode_www_form(gen_params(filter_buy))
-    http          = Net::HTTP.new(uri.host, uri.port);
+    http          = Net::HTTP.new(uri.host, uri.port); http.use_ssl = true
     request       = Net::HTTP::Get.new(uri.request_uri)
     raw_response  = http.request(request).body
-
+    
     processed_res = raw_response.gsub!("angular.callbacks._6(","")
     processed_res = processed_res.gsub!(");","")
+    # return [] if processed_res.nil?
     response      = JSON.parse(processed_res) rescue []
     json_arr      = JSON.parse(response["Data"]["ListObjects"]) rescue []
 

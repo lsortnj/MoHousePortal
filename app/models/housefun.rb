@@ -40,7 +40,6 @@ class Housefun < ActiveRecord::Base
     
     processed_res = raw_response.gsub!("angular.callbacks._6(","")
     processed_res = processed_res.gsub!(");","")
-    # return [] if processed_res.nil?
     response      = JSON.parse(processed_res) rescue []
     json_arr      = JSON.parse(response["Data"]["ListObjects"]) rescue []
 

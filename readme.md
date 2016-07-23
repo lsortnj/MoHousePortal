@@ -28,6 +28,7 @@
 #### How To Run:
    ```ruby
     bundle install
+    rake db:migrate
     rails s
    ```
    

@@ -77,7 +77,7 @@
     </thead>
     <%@houses.each do |h|%>
       <tr>
-        <td><a href="h.link" target="_blank"><%=image_tag(h.cover,{:width=>150})%></a></td>
+        <td><a href="<%=h.link%>" target="_blank"><%=image_tag(h.cover,{:width=>150})%></a></td>
         <td><h4 class="text-danger"><%=h.price%>萬</h4></td>
         <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
         <td class="hidden-xs"><%=h.building_age%></td>

@@ -1,5 +1,6 @@
 en:
   site_name: "Taiwan House Radar"
+  site_desc: "Taiwan House Info Integration"
   contact_mail: "chester4096@gmail.com"
   slogan: "Integrate All House Info"
   sub_slogan: "Never Find House Between Tabs."
@@ -21,6 +22,7 @@ en:
 
 zh-TW:
   site_name: "鬼島房屋"
+  site_desc: "所有房屋資訊，一手掌握"
   contact_mail: "chester4096@gmail.com"
   slogan: "為了買房，穿梭各大房仲網嗎？"
   sub_slogan: "各房仲網重複物件，一目了然!"

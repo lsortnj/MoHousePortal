@@ -1,0 +1,12 @@
+  <meta charset="utf-8">
+  <meta name="viewport"           content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description"        content="<%=t('site_desc')%>">
+  <meta property="og:site_name"   content="<%=t('app_name')%>" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:description" content="<%=t('site_name') + ' ' + t('site_desc')%>" />
+  <!-- <meta property="og:image"       content="<%#=@meta_image.nil? ? image_url('goods_default.png') : root_url + @meta_image%>"/> -->
+  <meta property="og:title"       content="<%=t('site_name') + ' ' + @meta_title.to_s%>"/>
+  <meta property="og:url"         content="<%=request.original_url%>"/>
+  <link rel="alternate" hreflang="zh-tw" href="<%=root_url%>" />
+  <link rel="alternate" hreflang="en" href="<%=root_url%>" />
+  <%= favicon_link_tag 'favicon.ico' %>

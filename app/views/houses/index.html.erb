@@ -19,27 +19,21 @@
     </select>
   </div>
 
-  <div class="col-md-3 col-xs-12">
-    <form class="form-inline">
-      <div class="form-group">
-        <label>$</label>
-        <select name="price_from" class="form-control">
-          <%for x in (100..2000).step(50)%>
-            <option value="<%=x%>"><%=x%></option>
-          <%end%>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>~</label>
-        <select name="price_to" class="form-control">
-          <%for x in (200..6000).step(100)%>
-            <option value="<%=x%>"><%=x%></option>
-          <%end%>
-        </select>
-        <label>萬</label>
-      </div>
-    </form>
-  </div>  
+  <div class="col-md-2 col-xs-6">
+    <select name="price_from" class="form-control">
+      <%for x in (100..2000).step(50)%>
+        <option value="<%=x%>">$ <%=x%>萬</option>
+      <%end%>
+    </select>
+  </div>
+
+  <div class="col-md-2 col-xs-6">
+    <select name="price_to" class="form-control">
+      <%for x in (200..6000).step(100)%>
+        <option value="<%=x%>">~ $ <%=x%>萬</option>
+      <%end%>
+    </select>
+  </div> 
 
   <div class="col-md-3 col-xs-12">
     <form class="form-inline">
@@ -64,7 +58,7 @@
     </form>
   </div>  
 
-  <button id="btnSearch" class="btn btn-success col-md-2 col-xs-12">Search</button>
+  <button id="btnSearch" class="btn btn-success col-md-1 col-xs-12">Search</button>
 </section>
 <hr>
 <%if @houses and @houses.size > 0%>
@@ -72,7 +66,7 @@
   <table class="table table-hover table-bordered table-house-list">
     <thead>
       <th class="td-cover">圖片</th><th class="td-price">總價</th><th class="td-range">坪數</th>
-      <th class="td-age">屋齡</th><th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th>
+      <th class="td-age hidden-xs">屋齡</th><th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th>
       <th class="td-floor hidden-xs">樓層</th><th class="td-park">車位</th>
     </thead>
     <%@houses.each do |h|%>

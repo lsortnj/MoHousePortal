@@ -19,7 +19,7 @@ var SearchFilter = new function(){
       var ageTo   = parseInt($selectAgeTo.val());
       if(ageTo <= ageFrom) ageTo = ageFrom+5;
       
-      location.href = "/?city="+$selectCity.val()+"&district="+$selectDist.val()+
+      location.href = "/houses/?city="+$selectCity.val()+"&district="+$selectDist.val()+
       "&price_from="+priceFrom+"&price_to="+priceTo+
       "&age_from="+ageFrom+"&age_to="+ageTo;
     });
@@ -57,8 +57,7 @@ var SearchFilter = new function(){
       setSelectValue($selectCity, city);
       setSelectValue($selectDist, district);
       setSelectValue($selectPriceFrom, priceFrom);
-      setSelectValue($selectPriceTo, priceTo);
-      setSelectValue($selectPriceTo, priceTo);
+      setSelectValue($selectPriceTo, (priceTo=="" ? 1000 : priceTo) );
       setSelectValue($selectAgeFrom, ageFrom);
       setSelectValue($selectAgeTo, ageTo);
 

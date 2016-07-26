@@ -1,6 +1,7 @@
 #encoding: utf-8
 class HousesController < ApplicationController
-  
+  layout 'houses'
+
   def index
     @county_info = TwCountyInfo::INFO_HASH
 
@@ -9,8 +10,8 @@ class HousesController < ApplicationController
     @city     = TwCountyInfo.get_city_name_by_code(@city)         if @city[0,1] == "0"
     @district = TwCountyInfo.get_district_name_by_code(@district) if @district.to_i > 0
     
-    @price_from = params[:price_from]  ||= 100
-    @price_to   = params[:price_to]    ||= 1000
+    @price_from = params[:price_from]  ||= 300
+    @price_to   = params[:price_to]    ||= 600
     @price_to   = @price_from.to_i+100 if @price_to.to_i < @price_from.to_i
 
     @age_from = params[:age_from] ||= 0

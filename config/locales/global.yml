@@ -1,18 +1,43 @@
 en:
   site_name: "Taiwan House Radar"
+  contact_mail: "chester4096@gmail.com"
   slogan: "Integrate All House Info"
   sub_slogan: "Never Find House Between Tabs."
+  menu:
+    about: "About"
+    try_now: "Try Now"
+    buy_me_a_beer: "Buy Me A Beer"
+  about:
+    title: ""
+    content: ""
   call_to_action: 
     title: "Save Time, Save Life."
     content: ""
     start_use: "Try Free >"
+  contact_me:
+    title: "Buy Me A Beer"
+    content: "Please fell free to support us, very appreciate that."
 
 
 zh-TW:
   site_name: "鬼島房屋"
+  contact_mail: "chester4096@gmail.com"
   slogan: "為了買房，穿梭各大房仲網嗎？"
   sub_slogan: "各房仲網重複物件，一目了然!"
+  menu:
+    about: "關於"
+    try_now: "馬上使用"
+    buy_me_a_beer: "給點鼓勵"
+  about:
+    title: "房仲資訊，集合！！"
+    content: "<p>作者曾有一段時間，為了找到理想的房子，穿梭在各大房仲網站，<br>卻時常自問“這間是不是X慶也有?”</p>
+              <p>同一物件在各房仲網的照片與價錢通常都一樣的，<br>透過我們的服務，重複的物件馬上現行!<p>
+              <p>雖然作者最後因為鬼島房價高不可攀，最後沒有如願，<br>希望有緣人能夠過此工具，找到心愛的窩。</p>
+             "
   call_to_action: 
     title: "省時，省受氣"
     content: "省下在各大房仲網切換的時間，給辛苦的自己，一杯好咖啡吧。"
     start_use: "馬上試用 >"
+  contact_me:
+    title: "您的支持，我的咖啡"
+    content: "如果覺得本服務不太討厭的，請支持我們，非常感謝。"

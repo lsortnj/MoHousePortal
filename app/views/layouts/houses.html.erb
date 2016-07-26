@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=t("site_name")%></title>
+  <%= stylesheet_link_tag    'houses/houses', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'houses/houses', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<section class="main-content col-md-offset-1 col-md-10">
+  <%= yield %>
+</section>
+</body>
+</html>

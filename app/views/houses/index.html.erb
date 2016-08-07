@@ -1,44 +1,53 @@
 <br><br>
 
-<section class="filter row">
-  <div class="col-md-2 col-xs-6">
-    <select name="city" class="form-control">
-      <%TwCountyInfo::INFO_HASH.each do |city|%>
-        <option value="<%=city[:code]%>"><%=city[:name]%></option>
-      <%end%>
-    </select>
-  </div>  
-
-  <div class="col-md-2 col-xs-6">
-    <select name="district" class="form-control">
-      <%TwCountyInfo::INFO_HASH.each do |city|%>
-        <%city[:districts].each do |dist|%>
-          <option data-city="<%=city[:code]%>" value="<%=dist[:code]%>"><%=dist[:name]%></option>
-        <%end%>
-      <%end%>
-    </select>
-  </div>
-
-  <div class="col-md-2 col-xs-6">
-    <select name="price_from" class="form-control">
-      <%for x in (100..2000).step(50)%>
-        <option value="<%=x%>">$ <%=x%>萬</option>
-      <%end%>
-    </select>
-  </div>
-
-  <div class="col-md-2 col-xs-6">
-    <select name="price_to" class="form-control">
-      <%for x in (200..6000).step(100)%>
-        <option value="<%=x%>">~ $ <%=x%>萬</option>
-      <%end%>
-    </select>
-  </div> 
-
-  <div class="col-md-3 col-xs-12">
+<section class="col-xs-12 col-sm-3 col-md-3 filter">
+  <h4 class="text-center">篩選條件</h4>
+  <h6>地區</h6>
+  <div class="filter-city text-center">
     <form class="form-inline">
       <div class="form-group">
-        <label>屋齡</label>
+        <select name="city" class="form-control">
+          <%TwCountyInfo::INFO_HASH.each do |city|%>
+            <option value="<%=city[:code]%>"><%=city[:name]%></option>
+          <%end%>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="district" class="form-control">
+          <%TwCountyInfo::INFO_HASH.each do |city|%>
+            <%city[:districts].each do |dist|%>
+              <option data-city="<%=city[:code]%>" value="<%=dist[:code]%>"><%=dist[:name]%></option>
+            <%end%>
+          <%end%>
+        </select>
+      </div>
+    </form>
+  </div><hr>
+
+  <h6>價格(萬)</h6>
+  <div class="filter-price text-center">
+    <form class="form-inline">
+      <div class="form-group">
+        <select name="price_from" class="form-control">
+          <%for x in (100..2000).step(50)%>
+            <option value="<%=x%>">  <%=x%></option>
+          <%end%>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="price_to" class="form-control">
+          <%for x in (200..6000).step(100)%>
+            <option value="<%=x%>">~ <%=x%></option>
+          <%end%>
+        </select>
+      </div>
+    </form>
+  </div><hr>
+
+  <h6>屋齡(年)</h6>
+  <div class="filter-age text-center">
+    <form class="form-inline">
+      <div class="form-group">
         <select name="age_from" class="form-control">
           <%for x in (0..50).step(5)%>
             <option value="<%=x%>"><%=x%></option>
@@ -46,46 +55,51 @@
         </select>
       </div>
       <div class="form-group">
-        <label>~</label>
         <select name="age_to" class="form-control">
           <%for x in (0..60).step(5)%>
             <%next if x==0%>
-            <option value="<%=x%>"><%=x%></option>
+            <option value="<%=x%>">~ <%=x%></option>
           <%end%>
         </select>
-        <label>年</label>
       </div>
     </form>
   </div>  
-
-  <button id="btnSearch" class="btn btn-success col-md-1 col-xs-12">Search</button>
+  <hr>
+  <button id="btnSearch" class="btn btn-success col-xs-12">搜尋</button>
 </section>
-<hr>
-<%if @houses and @houses.size > 0%>
-  <h4 class="text-center">共有<span class="text-success"><%=@houses.length%></span>筆物件</h4>
-  <table class="table table-hover table-bordered table-house-list">
-    <thead>
-      <th class="td-cover">圖片</th><th class="td-price">總價</th><th class="td-range">坪數</th>
-      <th class="td-age hidden-xs">屋齡</th><th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th>
-      <th class="td-floor hidden-xs">樓層</th><th class="td-park">車位</th>
-    </thead>
-    <%@houses.each do |h|%>
-      <tr>
-        <td><a href="<%=h.link%>" target="_blank"><%=image_tag(h.cover,{:width=>150})%></a></td>
-        <td><h4 class="text-danger"><%=h.price%>萬</h4></td>
-        <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
-        <td class="hidden-xs"><%=h.building_age%></td>
-        <td class="td-name"><%=link_to(h.name, h.link, {:target=>"_blank"})%></td>
-        <td class="hidden-xs"><%=h.rooms_count%>房(室)<%=h.space_count%>廳<%=h.toilet_count%>衛</td>
-        <td class="hidden-xs"><%=h.floor%></td>
-        <td><%=h.park_info%></td>
-        <!-- <td><%#=h.source%></td> -->
-      </tr>
-    <%end%>
-  </table>
-<%else%>
-  <br><br><h3 class="text-center text-success">沒有符合的物件</h3>
-<%end%>
+
+
+<section class="col-xs-12 col-sm-9 col-md-9 house-data-list">
+  <%if @houses and @houses.size > 0%>
+    <h4 class="text-center">共有<span class="text-success"><%=@houses.length%></span>筆物件</h4>
+    <table class="table table-hover table-bordered table-house-list">
+      <thead>
+        <th class="td-cover">圖片</th><th class="td-range">坪數</th>
+        <th class="td-age hidden-xs">屋齡</th><th class="td-name">名稱</th><th class="td-rooms hidden-xs">格局</th>
+        <th class="td-floor hidden-xs">樓層</th><th class="td-park">車位</th>
+      </thead>
+      <%@houses.each do |h|%>
+        <tr>
+          <td class="td-house-cover">
+            <a href="<%=h.link%>" target="_blank">
+              <%=image_tag(h.cover,{:class=>'house-cover'})%>
+              <h4 class="text-price"><%=h.price%>萬</h4>
+            </a>
+          </td>
+          <td><h4 class="text-success"><%=h.range_area%>坪</h4></td>
+          <td class="hidden-xs"><%=h.building_age%></td>
+          <td class="td-name"><%=link_to(h.name[0...20], h.link, {:target=>"_blank"})%></td>
+          <td class="hidden-xs"><%=h.rooms_count%>房(室)<%=h.space_count%>廳<%=h.toilet_count%>衛</td>
+          <td class="hidden-xs"><%=h.floor%></td>
+          <td><%=h.park_info%></td>
+          <!-- <td><%#=h.source%></td> -->
+        </tr>
+      <%end%>
+    </table>
+  <%else%>
+    <br><br><h3 class="text-center text-success">沒有符合的物件</h3>
+  <%end%>
+</section>
 
 
 <script>

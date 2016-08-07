@@ -1,0 +1,147 @@
+$mobile_width: 767px;
+$tablet_width: 1023px;
+
+@mixin fadeIn($second){
+  -webkit-animation: fadein $second; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation:    fadein $second; /* Firefox < 16 */
+  -ms-animation:     fadein $second; /* Internet Explorer */
+  -o-animation:      fadein $second; /* Opera < 12.1 */
+  animation:         fadein $second;
+}
+
+@mixin fadeOut($second){
+  -webkit-animation: fadeout $second; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation:    fadeout $second; /* Firefox < 16 */
+  -ms-animation:     fadeout $second; /* Internet Explorer */
+  -o-animation:      fadeout $second; /* Opera < 12.1 */
+  animation:         fadeout $second;
+}
+
+@mixin border_radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border_radius_top($radius){
+  -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+}
+@mixin shadow($paras){
+  -webkit-box-shadow: $paras;
+  -moz-box-shadow: $paras;
+  -o-box-shadow: $paras;
+  box-shadow: $paras;
+}
+
+@mixin box-sizing($sizing){
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
+@mixin scale($scale){
+  -webkit-transform: scale($scale);
+  -ms-transform: scale($scale);
+  -o-transform: scale($scale);
+  transform: scale($scale);
+}
+
+@mixin rotate($deg){
+  -webkit-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin card-shadow(){
+  background-color: #fff;
+  border: 1px solid #ddd;
+  @include shadow(2px 2px 10px #999);
+}
+
+@mixin blur($param) {
+  -webkit-filter: blur($param); filter: blur($param);
+}
+
+@mixin grayscale(){
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+@mixin grayscale-disabled() {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+@mixin center_crop_img(){
+  position:absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin sub-blk{
+  border: 1px solid #eee;
+  padding: 15px;
+  margin-bottom: 20px;
+  @include border-radius(5px);
+}
+
+@mixin bg-size-cover{
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin bg-size-contain{
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+
+@keyframes fadein { from{ opacity: 0.5; } to{ opacity: 1; } }
+@keyframes fadeout { from{ opacity: 1; } to{ opacity: 0; } }
+
+/* Firefox < 16 */
+@-moz-keyframes fadein { from{ opacity: 0.5; } to{ opacity: 1; } }
+@-moz-keyframes fadeout { from{ opacity: 1; } to{ opacity: 0; } }
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein { from{ opacity: 0.5; } to{ opacity: 1; } }
+@-webkit-keyframes fadeout { from{ opacity: 1; } to{ opacity: 0; } }
+
+/* Internet Explorer */
+@-ms-keyframes fadein { from{ opacity: 0.5; } to{ opacity: 1; } }
+@-ms-keyframes fadeout { from{ opacity: 1; } to{ opacity: 0; } }
+
+/* Opera < 12.1 */
+@-o-keyframes fadein { from{ opacity: 0.5; } to{ opacity: 1; } }
+@-o-keyframes fadeout { from{ opacity: 1; } to{ opacity: 0; } }

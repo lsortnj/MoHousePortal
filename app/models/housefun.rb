@@ -22,7 +22,7 @@ class Housefun < ActiveRecord::Base
       :"TGTypeList"     => ""         ,:"Tag"            => "",
       :"RoomID"         => ""         ,:"Room"           => "",
       :"RegAreaID"      => ""         ,:"RegArea"        => "",
-      :"CaseType"       => "L", # L:電梯大樓, K:無電梯公寓, N:別墅, M:透天厝, S:套房
+      :"CaseType"       => "L,K,M,S", # L:電梯大樓, K:無電梯公寓, N:別墅, M:透天厝, S:套房
       :"UnitPriceID"    => ""         ,:"UnitPrice"      => "",
       :"BuildAgeID"     => "6"        ,:"BuildAge"       => "5-15",
       :"ParkingType"    => ""         ,:"CaseFloor"      => "",

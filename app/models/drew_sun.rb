@@ -125,7 +125,7 @@ class DrewSun
                "^#{filter_buy.price_from}_#{filter_buy.price_to}"+ #Price Range
                "^P0_0^1^#{house_type}"+ #House Type
                "^#{filter_buy.age_from}_#{filter_buy.age_to}"+ #Building Age Range
-               "^2_2^0^0_0^0_0^0^0^0^0^^6^1^#{page_order}^1&rlg=0"
+               "^2_3_4^0^0_0^0_0^0^0^0^0^^6^1^#{page_order}^1&rlg=0"
       url = host + params
       return url
     end
